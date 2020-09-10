@@ -4,8 +4,6 @@ import bs4
 import argparse
 from fake_useragent import UserAgent
 
-
-
 ua = UserAgent() 
 header = { 
     "User-Agent": ua.random 
@@ -21,7 +19,6 @@ ap.add_argument("-t","--tech",required=True,help="Technology for which Organizat
 args = vars(ap.parse_args())
 
 language = args["lang"]
-#language = 'javascript'
 str(language)
 
 soup = bs4.BeautifulSoup(res.text,'html.parser')
