@@ -1,6 +1,7 @@
 import requests
 import openpyxl
 import bs4
+import os
 import argparse
 from fake_useragent import UserAgent
 
@@ -67,4 +68,9 @@ for i in range(0,len(organizations)):
     sheet.cell(row = i + 2, column = 2).value = tech_Status[i] 
     sheet.cell(row = i + 2, column = 3).value = org_Tech_URL[i]
 
-wb.save("GSoC_Org_List.xlsx")
+file_name = "GSoC_Org_List"
+
+while(os.path.isfile(file_name+'.xlsx')):
+    file_name = file_name+'_' 
+
+wb.save(file_name+".xlsx")
