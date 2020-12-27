@@ -33,8 +33,8 @@ tech_index = 0
 
 for link in all_org_Link:
     
-    presentLink = link.get('href')
-    comp_url = "https://summerofcode.withgoogle.com" + presentLink
+    comp_Link = link.get('href')
+    comp_url = "https://summerofcode.withgoogle.com" + comp_Link
 
     print(tech_index)
     print(comp_url)
@@ -50,7 +50,7 @@ for link in all_org_Link:
     for name in comp_Tech:
 
         if technology in name.getText():
-            tech_Status[tech_index] = 'yes'
+            tech_Status[tech_index] = 'Yes'
 
     tech_index = tech_index + 1
 
@@ -58,6 +58,7 @@ wb = openpyxl.Workbook()
 sheet = wb['Sheet']
 
 sheet.cell(row=1,column=1).value="Organization"
+
 sheet.cell(row=1,column=2).value="Does {0} Technology Offered?".format(technology)
 sheet.cell(row=1,column=3).value="Link for the Organization"
 
