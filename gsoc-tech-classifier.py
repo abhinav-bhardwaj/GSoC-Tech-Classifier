@@ -9,24 +9,24 @@ header = {
     "User-Agent": ua.random 
      } 
 
-url = "https://summerofcode.withgoogle.com/archive/2019/organizations/"
-
-res = requests.get(url)
-res.raise_for_status()
-
 ap = argparse.ArgumentParser()
 ap.add_argument("-t","--tech",required=True,help="Technology for which Organizations to be searched")
 args = vars(ap.parse_args())
 
-language = args["lang"]
-str(language)
+technology = args["tech"]
+str(technology)
+
+url = "https://summerofcode.withgoogle.com/archive/2019/organizations/"
+
+res = requests.get(url)
+res.raise_for_status()
 
 soup = bs4.BeautifulSoup(res.text,'html.parser')
 
 org = soup.select('h4[class="organization-card__name font-black-54"]')
 
 orgLink = soup.find_all("a",class_="organization-card__link")
-languageCheck = ['no']*len(org)
+technologyCheck = ['No']*len(org)
 orgURL = ['none']*len(orgLink)
 
 item = 0
@@ -55,16 +55,14 @@ for link in orgLink:
 
     for name in compTech:
 
-        if language in name.getText():
-            languageCheck[item] = 'yes'
+        if technology in name.getText():
+            technologyCheck[item] = 'yes'
 
     item = item + 1
 
-
-
 for i in range(0,len(org)):
     sheet.cell(row = i + 2, column = 1).value= org[i].getText()
-    sheet.cell(row = i + 2, column = 2).value = languageCheck[i] 
+    sheet.cell(row = i + 2, column = 2).value = technologyCheck[i] 
     sheet.cell(row = i + 2, column = 3).value = orgURL[i]
 
 wb.save("gsocOrgList.xlsx")
