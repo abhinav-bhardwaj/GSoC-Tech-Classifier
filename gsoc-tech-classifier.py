@@ -30,12 +30,6 @@ tech_Status = ['No']*len(organizations)
 org_Tech_URL = ['none']*len(all_org_Link)
 
 tech_index = 0
-wb = openpyxl.Workbook()
-sheet = wb['Sheet']
-
-sheet.cell(row=1,column=1).value="Organization"
-sheet.cell(row=1,column=2).value="Does {0} Technology Offered?".format(technology)
-sheet.cell(row=1,column=3).value="Link for the Organization"
 
 for link in all_org_Link:
     
@@ -59,6 +53,13 @@ for link in all_org_Link:
             tech_Status[tech_index] = 'yes'
 
     tech_index = tech_index + 1
+
+wb = openpyxl.Workbook()
+sheet = wb['Sheet']
+
+sheet.cell(row=1,column=1).value="Organization"
+sheet.cell(row=1,column=2).value="Does {0} Technology Offered?".format(technology)
+sheet.cell(row=1,column=3).value="Link for the Organization"
 
 for i in range(0,len(organizations)):
     sheet.cell(row = i + 2, column = 1).value= organizations[i].getText()
