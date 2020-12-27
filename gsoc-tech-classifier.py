@@ -16,7 +16,7 @@ args = vars(ap.parse_args())
 technology = args["tech"]
 str(technology)
 
-url = "https://summerofcode.withgoogle.com/archive/2019/organizations/"
+url = "https://summerofcode.withgoogle.com/archive/2020/organizations/"
 
 res = requests.get(url)
 res.raise_for_status()
