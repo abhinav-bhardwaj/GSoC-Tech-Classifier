@@ -23,46 +23,46 @@ res.raise_for_status()
 
 soup = bs4.BeautifulSoup(res.text,'html.parser')
 
-org = soup.select('h4[class="organization-card__name font-black-54"]')
+organizations = soup.select('h4[class="organization-card__name font-black-54"]')
 
-orgLink = soup.find_all("a",class_="organization-card__link")
-technologyCheck = ['No']*len(org)
-orgURL = ['none']*len(orgLink)
+all_org_Link = soup.find_all("a",class_="organization-card__link")
+tech_Status = ['No']*len(organizations)
+org_Tech_URL = ['none']*len(all_org_Link)
 
-item = 0
+tech_index = 0
 wb = openpyxl.Workbook()
 sheet = wb['Sheet']
 
 sheet.cell(row=1,column=1).value="Organization"
-sheet.cell(row=1,column=2).value="Does Technology Offered?"
+sheet.cell(row=1,column=2).value="Does {0} Technology Offered?".format(technology)
 sheet.cell(row=1,column=3).value="Link for the Organization"
 
-for link in orgLink:
+for link in all_org_Link:
     
     presentLink = link.get('href')
-    url2 = "https://summerofcode.withgoogle.com" + presentLink
+    comp_url = "https://summerofcode.withgoogle.com" + presentLink
 
-    print(item)
-    print(url2)
+    print(tech_index)
+    print(comp_url)
 
-    orgURL[item] = url2
-    res2 = requests.get(url2)
+    org_Tech_URL[tech_index] = comp_url
+    res2 = requests.get(comp_url)
     res2.raise_for_status()
 
     soup2 = bs4.BeautifulSoup(res2.text,'html.parser')
 
-    compTech = soup2.find_all("li",class_="organization__tag organization__tag--technology")
+    comp_Tech = soup2.find_all("li",class_="organization__tag organization__tag--technology")
 
-    for name in compTech:
+    for name in comp_Tech:
 
         if technology in name.getText():
-            technologyCheck[item] = 'yes'
+            tech_Status[tech_index] = 'yes'
 
-    item = item + 1
+    tech_index = tech_index + 1
 
-for i in range(0,len(org)):
-    sheet.cell(row = i + 2, column = 1).value= org[i].getText()
-    sheet.cell(row = i + 2, column = 2).value = technologyCheck[i] 
-    sheet.cell(row = i + 2, column = 3).value = orgURL[i]
+for i in range(0,len(organizations)):
+    sheet.cell(row = i + 2, column = 1).value= organizations[i].getText()
+    sheet.cell(row = i + 2, column = 2).value = tech_Status[i] 
+    sheet.cell(row = i + 2, column = 3).value = org_Tech_URL[i]
 
-wb.save("gsocOrgList.xlsx")
+wb.save("GSoC_Org_List.xlsx")
