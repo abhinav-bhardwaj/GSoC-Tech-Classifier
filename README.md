@@ -2,7 +2,7 @@
 ## Description
 Classifies organizations in association with Google Summer of Code based on specific technology
 
-[Classifying GSoC Organizations using Python by Abhinav Dubey](https://now-its-abhi.medium.com/classifying-gsoc-organizations-using-python-5d4d81a419db?source=friends_link&sk=d45125e69937cc3c956a75e6e8da3132)
+Blog of this project - [Classifying GSoC Organizations using Python by Abhinav Dubey](https://now-its-abhi.medium.com/classifying-gsoc-organizations-using-python-5d4d81a419db?source=friends_link&sk=d45125e69937cc3c956a75e6e8da3132)
 
 ## Third-party libraries required 
 ```argparse
