@@ -22,5 +22,6 @@ python gsoc-tech-classifier.py -t TECHNOLOGY_NAME
 ```
 
 ## Output
-Output file - GSoC_Org_List.xslx
+Output file - GSoC_Org_List.xslx(https://github.com/abhinav-bhardwaj/GSoC-Tech-Classifier/blob/master/GSoC_Org_List.xlsx)
+
 ![output_image](https://github.com/abhinav-bhardwaj/GSoC-Tech-Classifier/blob/master/GSoC_ScreenShot.PNG)
